@@ -5,17 +5,20 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 
-@TeleOp(name="Main")
-public class Main extends OpMode {
-
+@TeleOp(name="Tank Drive")
+public class TankDrive extends OpMode {
     private Drivetrain drivetrain = new Drivetrain();
 
     @Override
     public void init() {
         drivetrain.init(hardwareMap);
     }
+
+    @Override
+    public void init_loop() {
+    }
     @Override
     public void loop() {
-        drivetrain.mecanumDrive(gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+        drivetrain.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
     }
 }
