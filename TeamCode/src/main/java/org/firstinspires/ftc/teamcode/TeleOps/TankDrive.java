@@ -12,11 +12,11 @@ public class TankDrive extends OpMode {
     @Override
     public void init() {
         drivetrain.init(hardwareMap);
+
+        telemetry.addData(">", "Robot Initialized");
+        telemetry.update();
     }
 
-    @Override
-    public void init_loop() {
-    }
     @Override
     public void loop() {
         drivetrain.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);

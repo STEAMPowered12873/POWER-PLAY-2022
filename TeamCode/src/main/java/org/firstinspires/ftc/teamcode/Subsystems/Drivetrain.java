@@ -6,48 +6,53 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 public class Drivetrain {
-    public DcMotor FR, FL, BR, BL;
-    ElapsedTime time = new ElapsedTime();
+    private DcMotor FL, FR, BL, BR;
 
     public Drivetrain(){}
 
     public void init(HardwareMap hw){
-        FR = hw.get(DcMotor.class, "FR");
         FL = hw.get(DcMotor.class, "FL");
-        BR = hw.get(DcMotor.class, "BR");
+        FR = hw.get(DcMotor.class, "FR");
         BL = hw.get(DcMotor.class, "BL");
+        BR = hw.get(DcMotor.class, "BR");
 
-//        FR.setDirection(DcMotor.Direction.REVERSE);
-//        FL.setDirection(DcMotor.Direction.FORWARD);
-//        BR.setDirection(DcMotor.Direction.FORWARD);
+//        FL.setDirection(DcMotor.Direction.REVERSE);
 //        BL.setDirection(DcMotor.Direction.REVERSE);
     }
-
     public void setMode(DcMotor.RunMode mode){
-        FR.setMode(mode);
         FL.setMode(mode);
-        BR.setMode(mode);
+        FR.setMode(mode);
         BL.setMode(mode);
+        BR.setMode(mode);
     }
 
     public void setPower(double power){
-        FR.setPower(power);
         FL.setPower(power);
-        BR.setPower(power);
+        FR.setPower(power);
         BL.setPower(power);
+        BR.setPower(power);
+    }
+
+    public void setPowers(double FLPower, double FRPower, double BLPower, double BRPower){
+        FL.setPower(FLPower);
+        FR.setPower(FRPower);
+        BL.setPower(BLPower);
+        BR.setPower(BRPower);
     }
 
     public void tankDrive(double leftPower, double rightPower){
-        FR.setPower(rightPower);
         FL.setPower(leftPower);
-        BR.setPower(rightPower);
+        FR.setPower(rightPower);
         BL.setPower(leftPower);
+        BR.setPower(rightPower);
     }
 
     public void mecanumDrive(double forwardPower, double lateralPower, double rotationalPower){
-        FR.setPower(Range.clip((forwardPower - lateralPower - rotationalPower), -1, 1));
         FL.setPower(Range.clip((forwardPower - lateralPower + rotationalPower), -1, 1));
-        BR.setPower(Range.clip((forwardPower + lateralPower - rotationalPower), -1, 1));
+        FR.setPower(Range.clip((forwardPower + lateralPower - rotationalPower), -1, 1));
         BL.setPower(Range.clip((forwardPower + lateralPower + rotationalPower), -1, 1));
+        BR.setPower(Range.clip((forwardPower - lateralPower - rotationalPower), -1, 1));
     }
 }
+
+
